@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 // Importa il router della bacheca
 const bachecaRouter = require('./routers/bacheca');
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
   res.send('server del blog');
