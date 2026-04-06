@@ -16,9 +16,19 @@ function show (req, res) {
 
 // Funzione per gestire la creazione di un nuovo post
 function store (req, res) {
-    console.log(req.body);
-    
-    res.send('Create a new post');
+    const newPost = posts [posts.length -1].id + 1;
+    const post = {
+        id: newPost,
+        titolo: req.body.titolo,
+        contenuto: req.body.contenuto,
+        immagine : req.body.immagine,
+        tags : req.body.tags
+    };
+    posts.push(post);
+
+    console.log(post);
+    res.status(201);
+    res.json(post);
 }
 
 // Funzione per gestire l'aggiornamento di un post esistente
