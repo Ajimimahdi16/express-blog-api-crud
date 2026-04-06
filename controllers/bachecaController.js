@@ -33,9 +33,22 @@ function store (req, res) {
 
 // Funzione per gestire l'aggiornamento di un post esistente
 function update (req, res) {
-    res.send('Update a post');
+    const id = parseInt(req.params.id); // Ottieni l'ID del post da aggiornare
+     const post = posts.find(p => p.id === parseInt(id));
+    if (!post){
+        res.status(404);
+        return res.json({
+        error: 'Post not found',
+        message: 'Post not found'
+    });
 }
-
+    post.titolo=req.body.titolo;
+    post.contenuto=req.body.contenuto;
+    post.immagine=req.body.immagine;
+    post.tags=req.body.tags;
+    console.log(post);
+    res.json(post);
+}
 
 // Funzione per gestire la modifica parziale di un post esistente
 function modify (req, res) {
