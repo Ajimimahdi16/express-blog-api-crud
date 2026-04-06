@@ -4,6 +4,8 @@ const port = 3000;
 // Importa il router della bacheca
 const bachecaRouter = require('./routers/bacheca');
 app.use(express.static('public'));
+// Middleware per il parsing del corpo delle richieste in formato JSON  
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('server del blog');

@@ -1,11 +1,11 @@
 
 const posts = require('../dataPost/post');
-
+// Funzione per gestire la visualizzazione di tutti i post
 function index (req, res) {
     res.json(posts);
 }
 
-
+// Funzione per gestire la visualizzazione di un singolo post
 function show (req, res) {
     const id = req.params.id;
     const post = posts.find(p => p.id === parseInt(id));
@@ -14,24 +14,26 @@ function show (req, res) {
     res.json(post);
 }
 
-
+// Funzione per gestire la creazione di un nuovo post
 function store (req, res) {
+    console.log(req.body);
+    
     res.send('Create a new post');
 }
 
-
+// Funzione per gestire l'aggiornamento di un post esistente
 function update (req, res) {
     res.send('Update a post');
 }
 
 
-
+// Funzione per gestire la modifica parziale di un post esistente
 function modify (req, res) {
     res.send('Modify a post');
 }
 
 
-
+// Funzione per gestire la cancellazione di un post esistente
 function destroy (req, res) {
     const id = parseInt(req.params.id);
     const post = posts.find(p => p.id === id);
@@ -45,8 +47,10 @@ function destroy (req, res) {
         message: 'Post not found'
     });
     } 
+    // Rimuovi il post dall'array
     const index = posts.indexOf(post);
     posts.splice(index, 1);
+    // Restituisci una risposta di successo
     res.json({
         status: 200,
         message: 'Post deleted successfully'
